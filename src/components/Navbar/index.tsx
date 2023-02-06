@@ -38,8 +38,12 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="flex items-center justify-center bg-white py-2 mx-2 rounded-b-xl px-2">
-      <div className="w-1/3">LOGO</div>
+    <div className="mx-2 flex items-center justify-center rounded-b-xl bg-white py-2 px-2">
+      <div className="w-1/3">
+        <Link href={"/"}>
+          <p>LOGO</p>
+        </Link>
+      </div>
       <div className="flex w-1/3 items-center justify-around">
         {sessionData && getNavs()}
       </div>

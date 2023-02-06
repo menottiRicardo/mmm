@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
+import Registrar from "../components/Registrar";
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +13,9 @@ const Home: NextPage = () => {
       </Head>
       <main className="min-h-screen bg-gradient-to-b from-gray-300 to-gray-100">
         <Navbar />
-
+        
+        <h1 className="text-center text-2xl font-medium mt-2">Bienvenido al Registro para el Congreso mundial</h1>
+        <Registrar />
       </main>
     </>
   );

@@ -24,6 +24,16 @@ const User = () => {
     return QRString;
   };
 
+  const utils = api.useContext();
+  const activateAccount = api.user.askForActivation.useMutation({
+    async onMutate() {
+      await utils.user.getUserInfo.cancel();
+    },
+    onSuccess(result) {
+      console.log(result);
+    },
+  });
+
   if (data?.data?.active === false) {
     return (
       <UserLayout>
@@ -48,7 +58,10 @@ const User = () => {
                 />
               </div>
               <div className="mt-4 mb-4 flex items-center justify-center">
-                <button className="mt-2 cursor-auto rounded-full bg-orange-400 px-4 py-2 transition-transform ease-in active:scale-105">
+                <button
+                  className="mt-2 cursor-auto rounded-full bg-orange-400 px-4 py-2 transition-transform ease-in active:scale-105"
+                  onClick={() => activateAccount.mutate({passportId: '1233'})}
+                >
                   Solicitar Activacion
                 </button>
               </div>

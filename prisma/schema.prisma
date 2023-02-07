@@ -63,6 +63,12 @@ model User {
     role          Role      @default(USER)
     active        Boolean   @default(false)
     passportId    String?   @unique
+    Hotel         Hotel?    @relation(fields: [hotelId], references: [id])
+    hotelId       String?
+    Bus           Bus?      @relation(fields: [busId], references: [id])
+    busId         String?
+    age           String?
+    nationality   String?
 }
 
 model VerificationToken {
@@ -71,4 +77,17 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Hotel {
+    id      String  @id @default(cuid())
+    address String?
+    users   User[]
+}
+
+model Bus {
+    id    String @id @default(cuid())
+    plate String
+    route String
+    users User[]
 }

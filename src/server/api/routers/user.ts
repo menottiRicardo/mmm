@@ -16,10 +16,11 @@ export const userRouter = createTRPCRouter({
   askForActivation: protectedProcedure
     .input(z.object({ passportId: z.string() }))
     .mutation(({ input, ctx }) => {
-      const checkForInactiveUser = ctx.prisma.user.findUnique({
-        where: passportId,
+      const checkForInactiveUser = void ctx.prisma.user.findUnique({
+        where: { passportId: input.passportId },
       });
       if (checkForInactiveUser) {
+        console.log('active', checkForInactiveUser)
         // apply logic to merge the inactive data and activate the new account
       }
       return ctx.prisma.user.findUnique({

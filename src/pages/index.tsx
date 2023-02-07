@@ -1,8 +1,21 @@
 import { type NextPage } from "next";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 
 const Home: NextPage = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const sendToSignIn = async () => {
+    await router.push("/auth/login");
+  };
+
+  if (!session) {
+    // Handle unauthenticated state, e.g. render a SignIn component
+    void sendToSignIn();
+  }
   return (
     <>
       <Head>
@@ -12,7 +25,6 @@ const Home: NextPage = () => {
       </Head>
       <main className="min-h-screen bg-gradient-to-b from-gray-300 to-gray-100">
         <Navbar />
-
       </main>
     </>
   );

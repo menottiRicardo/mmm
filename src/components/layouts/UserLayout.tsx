@@ -1,4 +1,5 @@
 import { UserCircleIcon } from "@heroicons/react/24/solid";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
 
@@ -13,11 +14,9 @@ const UserLayout = ({ children }: { children: any }) => {
         </div>
 
         {/* profile */}
-        <UserCircleIcon className="w-12" />
+        <UserCircleIcon className="w-12" onClick={() => void signOut()} />
       </div>
-      <div className="px-4">
-      {children}
-      </div>
+      <div className="px-4">{children}</div>
     </main>
   );
 };

@@ -6,10 +6,20 @@ import { QrScanner } from "@yudiel/react-qr-scanner";
 
 const User = () => {
   const [selectedTab, setSelectedTab] = useState<undefined | TAB>(undefined);
-  const [data, setData] = useState("No result");
+  const [message, setMessage] = useState({ message: "", status: "" });
   const router = useRouter();
 
   const { id } = router.query;
+
+  const handleQRScan = (message: string) => {
+    setMessage({ message, status: "success" });
+    setSelectedTab(TAB.SHOW_MESSAGE);
+  };
+
+  const generateQRString = () => {
+    const QRString = JSON.stringify({ userId: id });
+    return QRString;
+  };
 
   return (
     <UserLayout>
@@ -38,16 +48,20 @@ const User = () => {
         </div>
       </div>
 
-      {data}
       {selectedTab === TAB.SHOW_QR && (
         <div className="flex items-center justify-center rounded-md bg-white p-4 shadow-md">
-          <QRCode value={id as string} />
+          <QRCode value={generateQRString()} />
+        </div>
+      )}
+      {selectedTab === TAB.SHOW_MESSAGE && (
+        <div className="flex items-center justify-center rounded-md bg-white p-4 shadow-md">
+          <span>{message.message}</span>
         </div>
       )}
       {selectedTab === TAB.READ_QR && (
         <QrScanner
-          onDecode={(result) => setData(result)}
-          onError={(error) => setData(error?.message)}
+          onDecode={(result) => handleQRScan(result)}
+          onError={(error) => console.log(error?.message)}
         />
       )}
     </UserLayout>
@@ -59,4 +73,5 @@ export default User;
 enum TAB {
   READ_QR = "qr",
   SHOW_QR = "show",
+  SHOW_MESSAGE = "message",
 }

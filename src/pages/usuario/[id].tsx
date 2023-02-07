@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import QRCode from "react-qr-code";
 import UserLayout from "../../components/layouts/UserLayout";
 import { QrScanner } from "@yudiel/react-qr-scanner";
+import { api } from "../../utils/api";
 
 const User = () => {
   const [selectedTab, setSelectedTab] = useState<undefined | TAB>(undefined);
@@ -10,6 +11,8 @@ const User = () => {
   const router = useRouter();
 
   const { id } = router.query;
+
+  const data = api.user.getUserInfo.useQuery({ id: id as string });
 
   const handleQRScan = (message: string) => {
     setMessage({ message, status: "success" });
@@ -20,6 +23,41 @@ const User = () => {
     const QRString = JSON.stringify({ userId: id });
     return QRString;
   };
+
+  if (data?.data?.active === false) {
+    return (
+      <UserLayout>
+        {/* tabs */}
+        <div className="flex flex-col items-center justify-center gap-y-4">
+          <div className="rounded-lg bg-white p-4 shadow-sm transition-colors duration-150 ease-in">
+            <h1 className="text-center text-2xl font-bold">
+              Parece que tu cuenta no ha sido activada
+            </h1>
+
+            {/* id input */}
+            <div className="mt-4">
+              <label htmlFor="askActive">
+                Escribe tu numero de{" "}
+                <span className="font-bold">Pasaporte</span>
+              </label>
+              <div className="rounded-md border-2 border-orange-500 p-2">
+                <input
+                  id="askActive"
+                  className="ml-2 outline-none"
+                  placeholder="Pasaporte"
+                />
+              </div>
+              <div className="mt-4 mb-4 flex items-center justify-center">
+                <button className="mt-2 cursor-auto rounded-full bg-orange-400 px-4 py-2 transition-transform ease-in active:scale-105">
+                  Solicitar Activacion
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </UserLayout>
+    );
+  }
 
   return (
     <UserLayout>

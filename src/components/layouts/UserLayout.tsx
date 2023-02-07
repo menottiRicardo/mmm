@@ -3,7 +3,7 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
 
-const UserLayout = ({ children }: { children: any }) => {
+const UserLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="min-h-screen bg-gray-100">
       {/* navbar */}

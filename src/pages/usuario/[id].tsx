@@ -38,6 +38,7 @@ const User = () => {
         </div>
       </div>
 
+      {data}
       {selectedTab === TAB.SHOW_QR && (
         <div className="flex items-center justify-center rounded-md bg-white p-4 shadow-md">
           <QRCode value={id as string} />
@@ -45,8 +46,8 @@ const User = () => {
       )}
       {selectedTab === TAB.READ_QR && (
         <QrScanner
-          onDecode={(result) => console.log(result)}
-          onError={(error) => console.log(error?.message)}
+          onDecode={(result) => setData(result)}
+          onError={(error) => setData(error?.message)}
         />
       )}
     </UserLayout>

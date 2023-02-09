@@ -19,23 +19,6 @@ const Signin = ({
       </div>
 
       <div className="grid w-full justify-items-center px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
-        {/* <Image src={logo} layout="fill" alt="logo image" /> */}
-        {/* {providers &&
-          Object.values(providers).map((provider) => (
-            <div key={provider.name} style={{ marginBottom: 0 }}>
-              <button
-                onClick={() =>
-                  void signIn(provider.id, {
-                    email: "ricardin.menotti@gmail.com",
-                    
-                  })
-                }
-                className="my-3 rounded-md bg-orange-500 px-4 py-2 text-white"
-              >
-                Inicia sesion con {provider.name}
-              </button>
-            </div>
-          ))} */}
         <form method="post" action="/api/auth/signin/email">
           <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
           <label>

@@ -17,6 +17,7 @@ datasource db {
 enum Role {
     USER
     ADMIN
+    DRIVER
 }
 
 model Example {
@@ -86,8 +87,9 @@ model Hotel {
 }
 
 model Bus {
-    id    String @id @default(cuid())
-    plate String
-    route String
-    users User[]
+    id       String @id @default(cuid())
+    plate    String
+    route    String?
+    users    User[]
+    driverId String @unique
 }

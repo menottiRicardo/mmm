@@ -22,7 +22,8 @@ export async function middleware(req: NextRequest) {
     redirectUrl.pathname = "/";
     switch (session.user.role) {
       case "USER": {
-        redirectUrl.pathname = `/usuario/${session.user.id}`;
+        // redirectUrl.pathname = `/usuario/${session.user.id}`;
+        redirectUrl.pathname = "/"
       }
 
       case "DRIVER": {

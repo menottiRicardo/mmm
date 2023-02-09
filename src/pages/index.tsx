@@ -7,15 +7,6 @@ import Navbar from "../components/Navbar";
 const Home: NextPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
-
-  const sendToSignIn = async () => {
-    await router.push("/auth/login");
-  };
-
-  if (!session) {
-    // Handle unauthenticated state, e.g. render a SignIn component
-    void sendToSignIn();
-  }
   return (
     <>
       <Head>

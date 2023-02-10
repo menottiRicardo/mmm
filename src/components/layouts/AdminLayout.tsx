@@ -4,16 +4,16 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 
 const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
+  name: "Ricardo Menotti",
+  email: "rm@test.com",
   imageUrl:
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Mi QR", href: "#" },
+  { name: "Configuracion", href: "#" },
+  { name: "Cerrar sesion", href: "#" },
 ];
 
 export default function AdminLayout({ children }: any) {

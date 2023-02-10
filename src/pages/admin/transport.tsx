@@ -6,6 +6,7 @@ import { api } from "../../utils/api";
 
 const Transport = () => {
   const { data: buses } = api.bus.getAllBuses.useQuery();
+  console.log('bus', buses)
   return (
     <AdminLayout>
       <div className="flex items-center justify-between">
@@ -23,6 +24,7 @@ const Transport = () => {
               route={bus.route as any}
               id={bus.id}
               plate={bus.plate}
+              status={bus.status}
             />
           ))}
       </div>

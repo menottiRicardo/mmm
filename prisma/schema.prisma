@@ -87,9 +87,10 @@ model Hotel {
 }
 
 model Bus {
-    id       String @id @default(cuid())
+    id       String  @id @default(cuid())
     plate    String
     route    String?
     users    User[]
-    driverId String @unique
+    driverId String  @unique
+    status   String?
 }

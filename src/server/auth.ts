@@ -51,6 +51,7 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   pages: {
     signIn: "/auth/signin",
+    verifyRequest: '/auth/verify-request'
   },
   providers: [
     EmailProvider({

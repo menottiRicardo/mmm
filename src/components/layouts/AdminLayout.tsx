@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 
 const user = {
   name: "Ricardo Menotti",
@@ -13,7 +14,6 @@ const user = {
 const userNavigation = [
   { name: "Mi QR", href: "#" },
   { name: "Configuracion", href: "#" },
-  { name: "Cerrar sesion", href: "#" },
 ];
 
 export default function AdminLayout({ children }: any) {
@@ -195,6 +195,13 @@ export default function AdminLayout({ children }: any) {
                           {item.name}
                         </Disclosure.Button>
                       ))}
+                      <Disclosure.Button
+                        as="p"
+                        onClick={() => signOut()}
+                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                      >
+                        Cerrar Sesion
+                      </Disclosure.Button>
                     </div>
                   </div>
                 </Disclosure.Panel>
